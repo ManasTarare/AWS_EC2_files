@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Course Structure Recommendation</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="page">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-icon">✦</div>
+        <div>
+          <p class="eyebrow">Machine Learning Platform</p>
+          <h1>Course Structure Recommendation</h1>
+        </div>
+      </div>
+      <div class="status-badge"><span class="status-dot"></span> API Connected</div>
+    </header>
+
+    <main class="layout">
+      <aside class="card form-card">
+        <div class="section-heading">
+          <h2>Build your course</h2>
+          <span>Inputs</span>
+        </div>
+        <p class="helper-text">Enter the course details to generate a structured learning plan using your trained recommendation model.</p>
+
+        <form id="course-form">
+          <div class="field">
+            <label for="provider"><span>Course Provider</span><span class="field-hint">Required</span></label>
+            <input id="provider" name="provider" type="text" value="Coursera" required>
+          </div>
+
+          <div class="field">
+            <label for="depth_level"><span>Depth Level</span><span class="field-hint">Required</span></label>
+            <select id="depth_level" name="depth_level" required>
+              <option value="Beginner">Beginner</option>
+              <option value="Intermediate">Intermediate</option>
+              <option value="Advanced">Advanced</option>
+              <option value="Not specified">Not specified</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="category"><span>Course Category</span><span class="field-hint">Required</span></label>
+            <input id="category" name="category" type="text" value="Data Science: Machine Learning" required>
+          </div>
+
+          <div class="field">
+            <label for="num_chapters"><span>Number of Chapters</span><span class="field-hint">1–60</span></label>
+            <input id="num_chapters" name="num_chapters" type="number" min="1" max="60" step="1" value="5" required>
+          </div>
+
+          <div class="field">
+            <label for="duration_hours"><span>Total Learning Duration</span><span class="field-hint">Hours</span></label>
+            <input id="duration_hours" name="duration_hours" type="number" min="0.01" step="any" value="8" required>
+          </div>
+
+          <button class="button" id="submit-button" type="submit">Generate Course Structure</button>
+        </form>
+
+        <div class="input-note"><span>ⓘ</span><span>Duration is allocated across chapters, videos, readings, assignments, quizzes, and summaries.</span></div>
+        <p class="helper-text">The model predicts the quantity of learning content. The local duration engine creates estimated learning times without requiring immediate retraining.</p>
+      </aside>
+
+      <section class="card" id="result-panel">
+        <div id="message-area"></div>
+        <div id="empty-state" class="empty-state">
+          <div class="empty-icon">📚</div>
+          <h3>Your course structure will appear here</h3>
+          <p>Enter the course details on the left and generate a course plan with estimated chapter and lesson durations.</p>
+        </div>
+        <div id="result-content" hidden></div>
+      </section>
+    </main>
+
+    <footer>Local Course Recommendation System · FastAPI · Scikit-learn</footer>
+  </div>
+  <script src="/static/app.js" defer></script>
+</body>
+</html>
