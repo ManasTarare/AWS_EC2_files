@@ -1,8 +1,11 @@
+
+#     python -m uvicorn app.main:app --host 127.0.0.1 --port 8002
+
+
 import logging
 from contextlib import asynccontextmanager
 from pathlib import Path
 from typing import Any
-
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
@@ -31,7 +34,7 @@ class CourseRecommendationRequest(BaseModel):
     depth_level: str = Field(..., examples=["Beginner"])
     category: str = Field(..., examples=["Data Science: Machine Learning"])
     num_chapters: int = Field(..., ge=1, le=60)
-    duration_hours: float = Field(..., gt=0)
+    duration_hours: int = Field(..., ge=1)
 
 
 def safe_int(value: Any, default: int = 0) -> int:
